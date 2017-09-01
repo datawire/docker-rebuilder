@@ -80,3 +80,7 @@ Here is how you can try it out:
    Use `C-p C-q` to detach.
 
 5. Run `build.sh clean` to cleanup the background container.
+
+That's it! Using this technique you should be able to produce
+development containers as quickly and as frequently as you rebuild
+your code.
