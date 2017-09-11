@@ -34,11 +34,13 @@ else
     fi
 
     # This syncs our source tree with the background container. We
-    # just rm the tree in the container and replace it with our
+    # just rm the source tree in the container and replace it with our
     # external source. This could probably be made to be smarter, but
     # it seems to work.
-    docker exec -it "${CONTAINER}" rm -rf /app
-    docker cp "${DIR}" "${CONTAINER}:/app"
+    docker cp "${DIR}/build.gradle" "${CONTAINER}:/app"
+    docker cp "${DIR}/settings.gradle" "${CONTAINER}:/app"
+    docker exec -it "${CONTAINER}" rm -rf /app/src
+    docker cp "${DIR}/src" "${CONTAINER}:/app/src"
 
     # Now after syncing the updated source code, we run the build
     # inside our background container, and if it succeeds we use
